@@ -11,7 +11,7 @@ namespace Business.Abstract
     public interface IEpisodeService
     {
         IDataResult<List<Episode>> GetAll();
-        IDataResult<List<Episode>> GetById(int id);
+        IDataResult<Episode> GetById(int id);
         IDataResult<List<Episode>> GetMultipleById(int[] id);
 
 

@@ -10,12 +10,13 @@ using System.Threading.Tasks;
 namespace Core.DataAccess.EF
 {
     public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
-   where TEntity : class, IEntity, new()
-   where TContext : DbContext, new()
+       where TEntity : class, IEntity, new()
+       where TContext : DbContext, new()
     {
         public void Add(TEntity entity)
         {
-            using (var context = new TContext())
+            //IDisposable pattern implementation of c#
+            using (TContext context = new TContext())
             {
                 var addedEntity = context.Entry(entity);
                 addedEntity.State = EntityState.Added;
@@ -25,7 +26,7 @@ namespace Core.DataAccess.EF
 
         public void Delete(TEntity entity)
         {
-            using (var context = new TContext())
+            using (TContext context = new TContext())
             {
                 var deletedEntity = context.Entry(entity);
                 deletedEntity.State = EntityState.Deleted;
@@ -35,15 +36,15 @@ namespace Core.DataAccess.EF
 
         public TEntity Get(Expression<Func<TEntity, bool>> filter)
         {
-            using (var context = new TContext())
+            using (TContext context = new TContext())
             {
                 return context.Set<TEntity>().SingleOrDefault(filter);
             }
         }
 
-        public IList<TEntity> GetList(Expression<Func<TEntity, bool>> filter = null)
+        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
-            using (var context = new TContext())
+            using (TContext context = new TContext())
             {
                 return filter == null
                     ? context.Set<TEntity>().ToList()
@@ -53,7 +54,7 @@ namespace Core.DataAccess.EF
 
         public void Update(TEntity entity)
         {
-            using (var context = new TContext())
+            using (TContext context = new TContext())
             {
                 var updatedEntity = context.Entry(entity);
                 updatedEntity.State = EntityState.Modified;

@@ -11,7 +11,7 @@ namespace Business.Abstract
     public interface ILocationService
     {
         IDataResult<List<Location>> GetAll();
-        IDataResult<List<Location>> GetById(int id);
+        IDataResult<Location> GetById(int id);
         IDataResult<List<Location>> GetMultipleById(int[] id);
 
 

@@ -1,5 +1,5 @@
 ﻿using Core.Entities;
-using Entities.Concrete.Enum;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -55,6 +55,6 @@ namespace Business.Concrete
             return new SuccessDataResult<Character>(_characterDal.Get(c => c.Type == type));
         }
 
-       
+        
     }
 }

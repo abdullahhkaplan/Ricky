@@ -11,9 +11,9 @@ namespace Business.Abstract
     public interface ICharacterService
     {
         IDataResult<List<Character>> GetAll();
-        IDataResult<List<Character>> GetById(int id);
-        
-
+        IDataResult<Character> GetById(int id);
+ 
+       
 
         IDataResult<Character> GetByName(string name);
         IDataResult<Character> GetByStatus(string status);
